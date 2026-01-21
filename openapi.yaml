@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: Country Information API
+  version: 1.0.0
+  description: REST API for browsing and viewing country data.
+
+servers:
+  - url: http://127.0.0.1:8000
+
+paths:
+  /countries:
+    get:
+      summary: List countries
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: region
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of countries
+
+  /countries/{code}:
+    get:
+      summary: Get country details
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Country details
