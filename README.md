@@ -43,6 +43,8 @@ After cloning the repository, ensure Laravel storage directories exist:
 mkdir -p storage/framework/views
 mkdir -p storage/framework/cache
 mkdir -p storage/framework/sessions
+mkdir -p bootstrap/cache
+> Note: On Linux servers, you may need to adjust permissions for `storage` and `bootstrap/cache`.
 ```
 
 ### 3. Install dependencies
@@ -98,6 +100,49 @@ Excludes disputed or maritime borders (API-driven)
 
 Borders are derived from the RestCountries API and include only internationally recognized land borders.
 Disputed or maritime borders (e.g., India–Afghanistan, India–Sri Lanka) are intentionally excluded.
+
+## Environment Variables
+
+The following environment variables must be configured in your `.env` file:
+```bash
+### Application
+APP_NAME=Country Information System  
+APP_ENV=local  
+APP_KEY=base64:generated-via-artisan  
+APP_DEBUG=true  
+APP_URL=http://127.0.0.1:8000  
+
+### Database
+DB_CONNECTION=mysql  
+DB_HOST=127.0.0.1  
+DB_PORT=3306  
+DB_DATABASE=country_db  
+DB_USERNAME=root  
+DB_PASSWORD=  
+
+### Cache (used for API caching)
+CACHE_DRIVER=file  
+
+### External API
+No API key is required.  
+This application consumes the public RestCountries API.
+```
+
+## ❓ Assumptions & Design Decisions
+
+- Country border data is sourced directly from the RestCountries API.
+  Only internationally recognized land borders are included.
+  Disputed or maritime borders (e.g., India–Afghanistan, India–Sri Lanka) are excluded.
+
+- Trending countries are calculated based on anonymous page views
+  recorded within the last 24 hours.
+  No user authentication or deduplication is applied.
+
+- External API responses are cached to improve performance
+  and reduce dependency on third-party availability.
+
+- Authentication, authorization, and rate limiting were considered
+  out of scope for this assessment.
 
 ### License
 
