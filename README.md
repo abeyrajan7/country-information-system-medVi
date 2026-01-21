@@ -26,40 +26,48 @@ A Laravel-based web and API application that displays country information, suppo
 
 ---
 
-## 📦 Installation & Setup
+## Installation & Setup
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/country-information-system.git
-cd country-information-system
+git clone https://github.com/abeyrajan7/country-information-system-medVi.git
+cd country-information-system-medVi
 ```
 
-### 1. Install dependencies
+## 2. Required Storage Setup
+
+After cloning the repository, ensure Laravel storage directories exist:
+mkdir -p storage/framework/views
+mkdir -p storage/framework/cache
+mkdir -p storage/framework/sessions
+chmod -R 775 storage bootstrap/cache
+
+### 3. Install dependencies
 
 composer install
 
-### 2. Environment setup
+### 4. Environment setup
 
 cp .env.example .env
 php artisan key:generate
 
-### 3. Configure database
+### 5. Configure database
 
 DB_DATABASE=country_db
 DB_USERNAME=root
 DB_PASSWORD=
 
-### 4. Run migrations
+### 6. Run migrations
 
 php artisan migrate
 
-### 5. Seed countries data
+### 7. Seed countries data
 
 php artisan db:seed
 (This may take a few minutes due to API enrichment.)
 
-### 6. Start the server
+### 8. Start the server
 
 php artisan serve
 App will be available at:
@@ -85,12 +93,14 @@ Calculated using server-side aggregation
 Excludes disputed or maritime borders (API-driven)
 
 ### Border Data Disclaimer
+
 Borders are derived from the RestCountries API and include only internationally recognized land borders.
 Disputed or maritime borders (e.g., India–Afghanistan, India–Sri Lanka) are intentionally excluded.
 
-
 ### License
+
 This project is for educational and evaluation purposes.
 
 ## 📘 API Documentation
+
 OpenAPI spec available in `openapi.yaml`
