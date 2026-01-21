@@ -38,10 +38,12 @@ cd country-information-system-medVi
 ## 2. Required Storage Setup
 
 After cloning the repository, ensure Laravel storage directories exist:
+
+```bash
 mkdir -p storage/framework/views
 mkdir -p storage/framework/cache
 mkdir -p storage/framework/sessions
-chmod -R 775 storage bootstrap/cache
+```
 
 ### 3. Install dependencies
 
